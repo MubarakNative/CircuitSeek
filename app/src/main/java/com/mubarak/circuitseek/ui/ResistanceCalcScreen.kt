@@ -10,8 +10,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -32,18 +38,25 @@ import com.mubarak.circuitseek.R
 import com.mubarak.circuitseek.ui.theme.CircuitSeekTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    onDrawer: () -> Unit,
+) {
     Scaffold(
         modifier = Modifier.fillMaxWidth(),
         topBar = {
-            CircuitSeekTopAppBar()
+            CircuitSeekTopAppBar(modifier = modifier){
+                onDrawer()
+            }
         }
     ) { innerPadding ->
         ResistanceCalcScreen(modifier = Modifier.padding(innerPadding))
     }
 }
 @Composable
-fun ResistanceCalcScreen(modifier: Modifier = Modifier) {
+fun ResistanceCalcScreen(
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
 
     var sourceVolt by remember { mutableStateOf("12.0") }
@@ -127,17 +140,33 @@ fun ResistanceCalcScreen(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CircuitSeekTopAppBar(modifier: Modifier = Modifier) {
-    TopAppBar(title = {
-        Text(text = stringResource(id = R.string.app_name))
-    }, modifier = modifier)
+fun CircuitSeekTopAppBar(
+    modifier: Modifier = Modifier,
+    onMenuClick: () -> Unit
+) {
+    TopAppBar(
+        title = {
+            Text(
+                text = stringResource(id = R.string.app_name),
+                style = MaterialTheme.typography.titleLarge
+            )
+        },
+        navigationIcon = {
+            IconButton(onClick = onMenuClick) {
+                Icon(
+                    imageVector = Icons.Outlined.Menu,
+                    contentDescription = null
+                )
+            }
+        }, modifier = modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun TopAppBarPreview() {
     CircuitSeekTheme {
-        CircuitSeekTopAppBar()
+        CircuitSeekTopAppBar{}
     }
 }
 

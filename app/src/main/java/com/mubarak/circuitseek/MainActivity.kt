@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.mubarak.circuitseek.ui.HomeScreen
+import com.mubarak.circuitseek.ui.CircuitSeekApp
 import com.mubarak.circuitseek.ui.theme.CircuitSeekTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CircuitSeekTheme {
-              HomeScreen()
+              CircuitSeekApp()
             }
         }
     }

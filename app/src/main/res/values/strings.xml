@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CircuitSeek</string>
+    <string name="resistance">Resistance Calculator</string>
+    <string name="watts_calc">Watts Calculator</string>
 </resources>

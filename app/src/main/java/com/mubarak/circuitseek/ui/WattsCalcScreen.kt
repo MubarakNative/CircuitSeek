@@ -10,9 +10,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,7 +34,22 @@ import androidx.compose.ui.unit.dp
 import com.mubarak.circuitseek.ui.theme.CircuitSeekTheme
 
 @Composable
-fun WattsCalcScreen(modifier: Modifier = Modifier) {
+fun WattsCalcScreen(modifier: Modifier = Modifier, onMenuClick: () -> Unit) {
+
+    CircuitSeekTheme {
+       Scaffold(topBar = {
+           WattsTopAppbar{
+               onMenuClick()
+           }
+       }) {
+           WattsContent(modifier = Modifier.padding(it))
+       }
+    }
+
+}
+
+@Composable
+fun WattsContent(modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
     var voltage by remember { mutableStateOf("3.3") }
@@ -93,10 +115,26 @@ fun WattsCalcScreen(modifier: Modifier = Modifier) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun WattsTopAppbar(modifier: Modifier = Modifier, onMenuClick: () -> Unit = {}) {
+    TopAppBar(title = {
+        Text(text = "Watts Calculator")
+    }, modifier = modifier, navigationIcon = {
+
+        IconButton(onClick = onMenuClick) {
+            Icon(
+                imageVector = Icons.Default.Menu,
+                contentDescription = null
+            )
+        }
+    })
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun WattsScreenPreview() {
     CircuitSeekTheme {
-        WattsCalcScreen()
+        WattsCalcScreen{}
     }
 }
