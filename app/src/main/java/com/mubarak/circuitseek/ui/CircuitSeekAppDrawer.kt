@@ -2,9 +2,6 @@ package com.mubarak.circuitseek.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
@@ -12,6 +9,7 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,7 +40,7 @@ fun CircuitSeekAppDrawer(
             },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.DateRange,
+                    painterResource(id = R.drawable.resistor_icon24px),
                     contentDescription = null
                 )
             })
@@ -55,7 +53,7 @@ fun CircuitSeekAppDrawer(
             onClick = {
                 navigateToWatts(); closeDrawer()
             },
-            icon = { Icon(imageVector = Icons.Default.Settings, contentDescription = null) }
+            icon = { Icon(painterResource(id = R.drawable.power_icon24px), contentDescription = null) }
         )
     }
 }
