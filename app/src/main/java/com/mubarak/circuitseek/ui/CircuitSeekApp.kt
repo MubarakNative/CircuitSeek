@@ -22,11 +22,11 @@ fun CircuitSeekApp() {
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val navController = rememberNavController()
-    val context = LocalContext.current
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute =
-        navBackStackEntry?.destination ?: Resistance
+        navBackStackEntry?.destination?.route ?: Resistance
+
     ModalNavigationDrawer(
         drawerContent = {
             CircuitSeekAppDrawer(
