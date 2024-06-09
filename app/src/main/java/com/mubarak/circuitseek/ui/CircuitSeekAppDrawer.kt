@@ -34,7 +34,7 @@ fun CircuitSeekAppDrawer(
             label = {
                 Text(text = stringResource(R.string.resistance))
             },
-            selected = currentDestination == Resistance,
+            selected = currentDestination == Resistance::class.qualifiedName,
             onClick = {
                 navigateToResistance(); closeDrawer()
             },
@@ -49,7 +49,7 @@ fun CircuitSeekAppDrawer(
             label = {
                 Text(text = stringResource(R.string.watts_calc))
             },
-            selected = currentDestination == Watts,
+            selected = currentDestination == Watts::class.qualifiedName,
             onClick = {
                 navigateToWatts(); closeDrawer()
             },
